@@ -3,6 +3,3 @@ class Item:
         self.name = name
         self.content = content
         self.date = date
-    
-    
-

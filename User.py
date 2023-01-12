@@ -1,4 +1,9 @@
 import re 
+import ToDoList
+import datetime
+
+# TODO: Ajouter les fonctions dateTime pour dateofBirth
+
 class User:
     def __init__(self, email, password, fname, lname, dateOfBirth):
         self.email = email
@@ -6,20 +11,20 @@ class User:
         self.fname = fname
         self.lname = lname
         self.dateOfBirth = dateOfBirth
+        self.todoList = ToDoList.ToDoList()
 
     def isValid(self):
+        # Check if the user is valid 
+        # Terms : 
+        #   - None of the user's charateristique are empty
+        #   - Check if the email is a real email (see isEmailValid for more informations )
+        #   - Check if the password has at least 1 lowercase, uppercase and number
+        #   - Check if the user is over 13 years old 
+
+        if self.isEmailValid() and self.isPasswordValid() and self.areNamesValid() and self.isDateOfBirthValid():
+            return True 
         
-        # If email is valid 
-        self.isEmailValid()
-
-        # If user's password is valid 
-        self.isPasswordValid()
-
-        # If user's lname and fname are valid 
-        self.areNamesValid()
-
-        # If user's age is valid
-        self.isDateOfBirthValid()
+        return False
 
 
     def isEmailValid(self):
@@ -52,10 +57,9 @@ class User:
         # Check if the user's lastname and firstname are valid 
         # Terms : 
         #   - Both are not null 
-        #   - Both contain et least on character 
-        #   - Both do not contain numbers or special character
+        #   - Both contain et least on character
 
-        print("areNamesValid is not made")
+        return True if self.lname != "" and self.fname != "" else False
         
 
     def isDateOfBirthValid(self):
@@ -63,4 +67,7 @@ class User:
         # Terms : 
         #   - The user is at least 13 years old
 
+        return True 
+
+        # TODO: Verifier si la date d'annivaisaire est OK
         print("isDateOfBirthValid is not made")
