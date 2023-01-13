@@ -1,6 +1,7 @@
 import re 
 import ToDoList
 import datetime
+import MyErrors
 
 # TODO: Ajouter les fonctions dateTime pour dateofBirth
 
@@ -24,7 +25,7 @@ class User:
         if self.isEmailValid() and self.isPasswordValid() and self.areNamesValid() and self.isDateOfBirthValid():
             return True 
         
-        return False
+        raise MyErrors.UserError()
 
 
     def isEmailValid(self):
@@ -36,7 +37,10 @@ class User:
 
         regex = re.compile(r'([A-Za-z0-9]+[.-_])*[A-Za-z0-9]+@[A-Za-z0-9-]+(\.[A-Z|a-z]{2,})+')
 
-        return True if re.fullmatch(regex, self.email) else False
+        if not re.fullmatch(regex, self.email):
+            raise MyErrors.UserEmailError()
+        
+        return True
 
 
     def isPasswordValid(self):
@@ -50,7 +54,7 @@ class User:
         if 8 <= len(self.password) <= 40 and re.search("[0-9]", self.password) and re.search("[A-Z]", self.password) and re.search("[a-z]", self.password):
             return True
         else:
-            return False
+            raise MyErrors.UserEmailError()
 
 
     def areNamesValid(self):
@@ -59,13 +63,20 @@ class User:
         #   - Both are not null 
         #   - Both contain et least on character
 
-        return True if self.lname != "" and self.fname != "" else False
+        
+        if self.lname != "" and self.fname != "":
+            return True 
+        else:
+            raise MyErrors.UserFirstOrLastNameError()
+
         
 
     def isDateOfBirthValid(self):
         # Check if the user's age is valid 
         # Terms : 
+        #   - If the value is a date type
         #   - The user is at least 13 years old
+
 
         return True 
 
