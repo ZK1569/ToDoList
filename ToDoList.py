@@ -5,6 +5,7 @@ class ToDoList:
     def __init__(self):
         self.list = []
 
+
     def add(self, name, content, date):
         # It adds a new Item in the list 
 
@@ -15,6 +16,8 @@ class ToDoList:
             # --- Ajouter l'Item a la liste
             self.list.append(Item(name, content, date))
             print("Nouvelle Item ajouter dans la list")
+
+        return True
 
 
     def canBeAdded(self, name, content, date):

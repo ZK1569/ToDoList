@@ -3,7 +3,7 @@ import ToDoList
 import datetime
 import MyErrors
 
-# TODO: Ajouter les fonctions dateTime pour dateofBirth
+# TODO: Ajouter les fonctions dateTime pour dateOfBirth
 
 class User:
     def __init__(self, email, password, fname, lname, dateOfBirth):
@@ -54,7 +54,7 @@ class User:
         if 8 <= len(self.password) <= 40 and re.search("[0-9]", self.password) and re.search("[A-Z]", self.password) and re.search("[a-z]", self.password):
             return True
         else:
-            raise MyErrors.UserEmailError()
+            raise MyErrors.UserPasswordError()
 
 
     def areNamesValid(self):
