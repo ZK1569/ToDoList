@@ -33,3 +33,15 @@ class ListFullError(Exception):
 class ItemNotCorrectError(Exception):
     def __str__(self):
         return repr("The Item isn't correct, it can't be added to the list")
+
+class UserBirthDayTypeError(Exception):
+    def __str__(self):
+        return repr("The variable dateOfBirth is not of type date")
+
+class UserIsUnder13YearsOld(Exception):
+    def __str__(self):
+        return repr("The user is under 13 years old and cannot continue")
+
+class toDoList30MinutesPause(Exception):
+    def __str__(self):
+        return repr("The 30 minute pause between the addition of the 2 items is not respected ") 

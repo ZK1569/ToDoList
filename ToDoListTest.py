@@ -10,7 +10,7 @@ class ToDoListTest(unittest.TestCase):
     def __init__(self, methodName: str = "runTest"):
 
         super().__init__(methodName)
-        today = datetime.date.today()
+        today = datetime.datetime.now()
         self.user = User("emailTest@gmail.com", "Password1", "firstname", "lastname", today.replace(year=today.year-13))
         self.user = self.user.todoList
 
@@ -95,6 +95,12 @@ class ToDoListTest(unittest.TestCase):
             self.user.add(i, "Content", datetime.datetime.now())
 
         self.assertEqual(self.user.getListSize(), 8)
+
+    def testAddItemsBeforeThe30MinuteBreak(self):
+        with self.assertRaises(MyErrors.toDoList30MinutesPause):
+            self.user.add("nameTest", "Content", datetime.datetime.now())
+            self.user.add("nameTest1", "Content", datetime.datetime.now())
+
 
 
     # TODO: Tester la fonction pour verifier l'interval entre 2 ajout, plus de 30 min

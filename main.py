@@ -3,7 +3,8 @@ import datetime
 import MyErrors
 import Item
 
-user = User("cristian.ursu.2001@gmail.com", "pasfrdA1", "fnaAme", "lname", "date")
+today = datetime.date.today()
+user = User("cristian.ursu.2001@gmail.com", "pasfrdA1", "fnaAme", "lname", datetime.datetime.now().replace(year=datetime.datetime.now().year - 13))
 print(user.isValid())
 
 print("--------------")
@@ -21,8 +22,5 @@ for objet in user.todoList.list:
 # print("La valeur final", user.todoList.list[0].content)
 
 
-# TODO: Faire les tests si on peut bien ajouter des truques a la list
 # TODO: Verifier le code pour les erreurs de comprension ou autre 
 # TODO: Faire les truques pour les heures (30 min de pause)
-
-# TODO: Mais je pense faire finalement tout les tests et verifier que ca marche

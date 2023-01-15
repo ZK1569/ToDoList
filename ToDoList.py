@@ -43,12 +43,12 @@ class ToDoList:
 
     def isBreakOver(self):
         # Check if the 30 min has passed
-        # TODO: Verifier les pauses ( 30min )
+        
+        # 1. Chercher dans tout les elements le plus vieux 
 
-        # C'est pour signifier pour idiqué que c'est pas fini
-        # print("isBreakOver is not made")
+        
 
-        return False
+        return True
 
     def isListFull(self):
         # Check if the user's todo list is not full (full at 10 items)

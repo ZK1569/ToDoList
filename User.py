@@ -3,7 +3,6 @@ import ToDoList
 import datetime
 import MyErrors
 
-# TODO: Ajouter les fonctions dateTime pour dateOfBirth
 
 class User:
     def __init__(self, email, password, fname, lname, dateOfBirth):
@@ -77,8 +76,16 @@ class User:
         #   - If the value is a date type
         #   - The user is at least 13 years old
 
+        if type(self.dateOfBirth) == datetime.datetime:
 
-        return True 
+            today = datetime.datetime.now()
+            date_delta = self.dateOfBirth.replace(year=self.dateOfBirth.year + 13)
 
-        # TODO: Verifier si la date d'annivaisaire est OK
-        print("isDateOfBirthValid is not made")
+            if today >= date_delta:
+                # The user is under 13 years old
+                return True 
+            else:
+                # The user is over 13 years old 
+                raise MyErrors.UserIsUnder13YearsOld()
+        else:
+            raise MyErrors.UserBirthDayTypeError()
