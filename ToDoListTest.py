@@ -3,7 +3,6 @@ import datetime
 import MyErrors
 from User import User 
 from unittest.mock import patch
-from ToDoList import ToDoList
 
 class ToDoListTest(unittest.TestCase):
 
@@ -73,38 +72,61 @@ class ToDoListTest(unittest.TestCase):
 
 
     @patch('ToDoList.ToDoList.isBreakOver')
-    def testToDoListAddMoreThan10ItemsInTheList(self, mock_isBreakOver):
+    @patch('EmailSender.EmailSender.sendMail')
+    def test_ToDoListAddMoreThan10ItemsInTheList(self, mock_isBreakOver, mock_emailSender):
         # Try to add more than 10 Items in the ToDo list 
 
         # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
         mock_isBreakOver.return_value = True
+        # This line mocks the sendMail function because it is not yet coded
+        mock_emailSender.return_value = True
         
         with self.assertRaises(MyErrors.ListFullError):
-            for i in range(11):
+            for i in range(15):
                 self.user.add(i, "Content", datetime.datetime.now())
 
 
     @patch('ToDoList.ToDoList.isBreakOver')
-    def testToDoListGetListSize(self, mock_isBreakOver):
+    @patch('EmailSender.EmailSender.sendMail')
+    def testToDoListGetListSize(self, mock_isBreakOver, mock_emailSender):
         # Test the recovery of the list size
 
         # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
         mock_isBreakOver.return_value = True
+        # This line mocks the sendMail function because it is not yet coded
+        mock_emailSender.return_value = True
         
         for i in range(8):
             self.user.add(i, "Content", datetime.datetime.now())
 
         self.assertEqual(self.user.getListSize(), 8)
 
+
+    def testIsDateValueIsDateType(self):
+        # Checks if the date value is of type datetime
+        with self.assertRaises(MyErrors.NotDateType):
+            self.user.add("nameTest", "Content", "String")
+
+
     def testAddItemsBeforeThe30MinuteBreak(self):
+        # Checks if 30 minutes have passed between 2 input additions 
+        # No mock of the isBreakOver function
+
         with self.assertRaises(MyErrors.toDoList30MinutesPause):
             self.user.add("nameTest", "Content", datetime.datetime.now())
-            self.user.add("nameTest1", "Content", datetime.datetime.now())
+            self.user.add("nameTest1", "Content", datetime.datetime.now())    
 
 
+    @patch('ToDoList.ToDoList.isBreakOver')
+    def testToDoListAddMoreThan10ItemsInTheList(self, mock_isBreakOver):
+        # Check if at the addition of the 8th element it sends a mail ( For the goods of the exercise the function is not coded and is just replaced by an error)
 
-    # TODO: Tester la fonction pour verifier l'interval entre 2 ajout, plus de 30 min
-    
+        # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
+        mock_isBreakOver.return_value = True
+        
+        with self.assertRaises(MyErrors.EmailSenderNotMade):
+            for i in range(8):
+                self.user.add(i, "Content", datetime.datetime.now())
     
 
 if __name__ == '__main__':

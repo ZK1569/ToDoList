@@ -34,7 +34,7 @@ class ItemNotCorrectError(Exception):
     def __str__(self):
         return repr("The Item isn't correct, it can't be added to the list")
 
-class UserBirthDayTypeError(Exception):
+class NotDateType(Exception):
     def __str__(self):
         return repr("The variable dateOfBirth is not of type date")
 
@@ -45,3 +45,7 @@ class UserIsUnder13YearsOld(Exception):
 class toDoList30MinutesPause(Exception):
     def __str__(self):
         return repr("The 30 minute pause between the addition of the 2 items is not respected ") 
+
+class EmailSenderNotMade(Exception):
+    def __str__(self):
+        return repr("This is not made yet")

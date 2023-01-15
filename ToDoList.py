@@ -1,5 +1,7 @@
 from Item import Item
+from EmailSender import EmailSender
 import MyErrors
+import datetime
 
 class ToDoList:
     def __init__(self):
@@ -9,13 +11,13 @@ class ToDoList:
     def add(self, name, content, date):
         # It adds a new Item in the list 
 
-        # Check if the user is valid 
-        # TODO: Je sais pas encore comment faire ca
-
         if self.canBeAdded(name, content, date):
-            # --- Ajouter l'Item a la liste
+
             self.list.append(Item(name, content, date))
-            # print("Nouvelle Item ajouter dans la list")
+
+            # Send a mail to warn that there are only 2 places left in the list
+            if self.getListSize() == 8:
+                EmailSender.sendMail()
 
         return True
 
@@ -23,16 +25,14 @@ class ToDoList:
     def canBeAdded(self, name, content, date):
         # Check if the user can add a new Item
 
-        if not self.isListFull() and self.singleName(name) and self.isBreakOver() and self.isContentValid(content):
+        if not self.isListFull() and self.singleName(name) and self.isDateType(date) and self.isBreakOver(date) and self.isContentValid(content):
             return True 
-
-        
 
         raise MyErrors.ItemNotCorrectError()
 
     
     def singleName(self, name):
-        # Check if the name if Item is signle
+        # Check if the name of Item is signle
 
         for listItem in self.list:
             if listItem.name == name:
@@ -41,14 +41,20 @@ class ToDoList:
         return True
 
 
-    def isBreakOver(self):
+    def isBreakOver(self, date):
         # Check if the 30 min has passed
         
-        # 1. Chercher dans tout les elements le plus vieux 
+        # 1. Search all items in the list for the oldest
+        lastItem = datetime.datetime.min
+        for listItem in self.list:
+            if listItem.date > lastItem:
+                lastItem = listItem.date
 
-        
-
-        return True
+        # 2. Check if 2 minutes have passed between no new Item and the oldest one in the list
+        if (lastItem + datetime.timedelta(minutes=30)) <= date:
+            return True 
+        else:
+            raise MyErrors.toDoList30MinutesPause()
 
     def isListFull(self):
         # Check if the user's todo list is not full (full at 10 items)
@@ -71,6 +77,14 @@ class ToDoList:
             raise MyErrors.ContentMinSizeError()
         
         return True
+
+    def isDateType(self, date):
+        # Check if the date is a datetype
+
+        if type(date) == datetime.datetime:
+            return True
+        else:
+            raise MyErrors.NotDateType()
 
     def getListSize(self):
         # Return int 

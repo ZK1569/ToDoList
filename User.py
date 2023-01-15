@@ -11,6 +11,9 @@ class User:
         self.fname = fname
         self.lname = lname
         self.dateOfBirth = dateOfBirth
+
+        # At the initialization of the class run the function isValid at the end to check if the user is valid
+        self.isValid()
         self.todoList = ToDoList.ToDoList()
 
     def isValid(self):
@@ -62,8 +65,7 @@ class User:
         #   - Both are not null 
         #   - Both contain et least on character
 
-        
-        if self.lname != "" and self.fname != "":
+        if type(self.fname) == str and type(self.lname) == str and self.lname != "" and self.fname != "":
             return True 
         else:
             raise MyErrors.UserFirstOrLastNameError()
@@ -82,10 +84,10 @@ class User:
             date_delta = self.dateOfBirth.replace(year=self.dateOfBirth.year + 13)
 
             if today >= date_delta:
-                # The user is under 13 years old
+                # The user is over 13 years old
                 return True 
             else:
-                # The user is over 13 years old 
+                # The user is under 13 years old 
                 raise MyErrors.UserIsUnder13YearsOld()
         else:
-            raise MyErrors.UserBirthDayTypeError()
+            raise MyErrors.NotDateType()

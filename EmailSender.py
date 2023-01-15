@@ -1,6 +1,7 @@
+import MyErrors
 class EmailSender:
 
-    def sendMail(self):
+    def sendMail():
         # It do nothing, it's here juste for some testing
 
-        pass
+        raise MyErrors.EmailSenderNotMade()

@@ -1,18 +1,17 @@
 from User import User
 import datetime
-import MyErrors
-import Item
 
 today = datetime.date.today()
-user = User("cristian.ursu.2001@gmail.com", "pasfrdA1", "fnaAme", "lname", datetime.datetime.now().replace(year=datetime.datetime.now().year - 13))
-print(user.isValid())
+user = User("cristian.ursu.2001@gmail.com", "Password1", "fnaAme", "lname", datetime.datetime.now().replace(year=datetime.datetime.now().year - 13))
 
 print("--------------")
-for i in range(10):
-    user.todoList.add(i, "Content je sais pas ecrire", "c'est la date et c'est pas ok")
+
+user.todoList.add("C'est la name 1 ", "Content je sais pas ecrire", datetime.datetime.now())
+user.todoList.add("C'est le name 2 ", "Content je sais pas ecrire", datetime.datetime.now() + datetime.timedelta(minutes=30))
 print("--------------")
 for objet in user.todoList.list:
     print(objet.name)
+    print(user.todoList.getListSize())
 
 
 # Code pour ajouter un nouvelle Item
