@@ -15,7 +15,7 @@ class ToDoList:
         if self.canBeAdded(name, content, date):
             # --- Ajouter l'Item a la liste
             self.list.append(Item(name, content, date))
-            print("Nouvelle Item ajouter dans la list")
+            # print("Nouvelle Item ajouter dans la list")
 
         return True
 
@@ -48,7 +48,7 @@ class ToDoList:
         # C'est pour signifier pour idiqué que c'est pas fini
         # print("isBreakOver is not made")
 
-        return True
+        return False
 
     def isListFull(self):
         # Check if the user's todo list is not full (full at 10 items)
