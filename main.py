@@ -19,7 +19,3 @@ for objet in user.todoList.list:
 
 # Code pour afficher les elements de la todoList
 # print("La valeur final", user.todoList.list[0].content)
-
-
-# TODO: Verifier le code pour les erreurs de comprension ou autre 
-# TODO: Faire les truques pour les heures (30 min de pause)
