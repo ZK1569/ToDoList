@@ -73,7 +73,7 @@ class ToDoListTest(unittest.TestCase):
 
     @patch('ToDoList.ToDoList.isBreakOver')
     @patch('EmailSender.EmailSender.sendMail')
-    def test_ToDoListAddMoreThan10ItemsInTheList(self, mock_isBreakOver, mock_emailSender):
+    def testToDoListAddMoreThan10ItemsInTheList(self, mock_isBreakOver, mock_emailSender):
         # Try to add more than 10 Items in the ToDo list 
 
         # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
@@ -118,7 +118,7 @@ class ToDoListTest(unittest.TestCase):
 
 
     @patch('ToDoList.ToDoList.isBreakOver')
-    def testToDoListAddMoreThan10ItemsInTheList(self, mock_isBreakOver):
+    def testToDoListMailSender(self, mock_isBreakOver):
         # Check if at the addition of the 8th element it sends a mail ( For the goods of the exercise the function is not coded and is just replaced by an error)
 
         # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
@@ -127,7 +127,7 @@ class ToDoListTest(unittest.TestCase):
         with self.assertRaises(MyErrors.EmailSenderNotMade):
             for i in range(8):
                 self.user.add(i, "Content", datetime.datetime.now())
-    
+
 
 if __name__ == '__main__':
     unittest.main()

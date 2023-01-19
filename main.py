@@ -12,10 +12,3 @@ print("--------------")
 for objet in user.todoList.list:
     print(objet.name)
     print(user.todoList.getListSize())
-
-
-# Code pour ajouter un nouvelle Item
-# user.todoList.add("test1", "C'est le content", "jcp")
-
-# Code pour afficher les elements de la todoList
-# print("La valeur final", user.todoList.list[0].content)
