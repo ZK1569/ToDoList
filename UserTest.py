@@ -12,7 +12,7 @@ class UserTest(unittest.TestCase):
         # This test is to indicate a correct user case 
 
         today = datetime.datetime.now()
-        self.assertTrue(User("emailTest@gmail.com", "Password1", "firstname", "lastname", today.replace(year=today.year - 13)))
+        self.assertTrue(User("emailTest@gmail.com", "", "firstname", "lastname", today.replace(year=today.year - 13)))
 
     def testEmailDoesNotContainAnyAt(self):
         # This is a test to see if it is not missing @
