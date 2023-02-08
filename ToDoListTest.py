@@ -34,7 +34,7 @@ class ToDoListTest(unittest.TestCase):
         # For this test we add 2 times the same item with the same name, it should return an error
 
         # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
-        mock_isBreakOver.return_value = True
+        mock_isBreakOver.return_value = False
         
         with self.assertRaises(MyErrors.SingleNameError):
             self.user.add("nameTest", "This is the first element and it is added correctly", datetime.datetime.now())
