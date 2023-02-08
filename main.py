@@ -12,3 +12,5 @@ print("--------------")
 for objet in user.todoList.list:
     print(objet.name)
     print(user.todoList.getListSize())
+
+print("test")
