@@ -58,7 +58,7 @@ class ToDoListTest(unittest.TestCase):
         # Try to add an item in the ToDoList with more than 1000 characters 
 
         # This line mocks the isBreakOver function so you don't have to wait 30 seconds between each test
-        mock_isBreakOver.return_value = False
+        mock_isBreakOver.return_value = True
 
         longString = """ 
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Non quam lacus suspendisse faucibus. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Dolor sed viverra ipsum nunc. Viverra adipiscing at in tellus integer. Metus aliquam eleifend mi in nulla posuere sollicitudin. Vitae sapien pellentesque habitant morbi tristique senectus. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Consectetur adipiscing elit pellentesque habitant morbi. Mauris cursus mattis molestie a iaculis at erat. Duis at consectetur lorem donec massa sapien faucibus et. Mattis aliquam faucibus purus in massa tempor. Quisque egestas diam in arcu cursus euismod quis viverra nibh. Feugiat in fermentum posuere urna. Arcu felis bibendum ut tristique et. Interdum consectetur libero id faucibus nisl tincidunt eget nullam non. Cum sociis natoque penatibus et. Ultrices gravida dictum fusce ut placerat orci nulla.
